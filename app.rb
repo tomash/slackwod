@@ -13,10 +13,12 @@ get '/' do
   wod_text.gsub!(/#(\w+)/, "")
   wod_text.squeeze!("\n").strip!
   page_id, item_id = wod_post["id"].split("_")
+  posted_at = Time.parse(wod_post["created_time"])
 
   returned = "
 #{wod_text}
 
-url: https://www.facebook.com/#{page_id}/posts/#{item_id}"
+posted at: #{posted_at.to_s}
+link: https://www.facebook.com/#{page_id}/posts/#{item_id}"
 
 end
